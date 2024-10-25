@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .main {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 300px;
+        }
+
+        .main h2 {
+            color: #4caf50;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select,
+        textarea {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            padding: 15px;
+            border-radius: 10px;
+            border: none;
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        width: 80%;
+        max-width: 300px;
+        text-align: center;
+    }
+
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        font-size: 20px;
+    }
+    </style>
+    <script>
+        function validateForm(event) {
+            event.preventDefault(); 
+
+            let isValid = true;
+            const firstName = document.getElementById("first").value.trim();
+            const lastName = document.getElementById("last").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+            const repass = document.getElementById("repass").value;
+            const phone = document.getElementById("phone").value.trim();
+            const address = document.getElementById("address").value.trim();
+            const gender = document.querySelector('input[name="gender"]:checked');
+
+            const namePattern = /^[a-zA-Z\s]+$/;
+            const phonePattern = /^\d{10,15}$/;
+
+            document.querySelectorAll(".error").forEach(el => el.remove());
+
+            if (!firstName || !namePattern.test(firstName)) {
+                displayError("first", "Please enter a valid first name.");
+                isValid = false;
+            }
+
+            if (!lastName || !namePattern.test(lastName)) {
+                displayError("last", "Please enter a valid last name.");
+                isValid = false;
+            }
+
+            if (!email || !email.includes("@")) {
+                displayError("email", "Please enter a valid email address.");
+                isValid = false;
+            }
+
+            if (!password || !password.match(/^(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])\S{8,}$/)) {
+                displayError("password", "Password must contain at least one number, one letter, one symbol, and be at least 8 characters long.");
+                isValid = false;
+            }
+
+            if (password !== repass) {
+                displayError("repass", "Passwords do not match.");
+                isValid = false;
+            }
+
+            if (!phone || !phonePattern.test(phone)) {
+                displayError("phone", "Please enter a valid phone number.");
+                isValid = false;
+            }
+
+            if (!address) {
+                displayError("address", "Please enter an address.");
+                isValid = false;
+            }
+
+            if (!gender) {
+                displayError("gender", "Please select a gender.");
+                isValid = false;
+            }
+
+            if (isValid) {
+                const modal = document.getElementById("successModal");
+                modal.style.display = "flex"; 
+
+                const closeModal = modal.querySelector(".close");
+                closeModal.onclick = function() {
+                    modal.style.display = "none"; 
+                };
+
+                window.onclick = function(event) {
+                    if (event.target === modal) {
+                        modal.style.display = "none";
+                    }
+                };
+            }
+        }
+
+        function displayError(inputId, message) {
+            const inputElement = document.getElementById(inputId);
+            const errorElement = document.createElement("div");
+            errorElement.className = "error";
+            errorElement.textContent = message;
+            inputElement.parentNode.insertBefore(errorElement, inputElement.nextSibling);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.querySelector("form");
+            form.addEventListener("submit", validateForm);
+        });
+
+    </script>
+</head>
+<body>
+    <div class="main">
+        <h2>Registration Form</h2>
+        <form action="">
+            <label for="first">First Name:</label>
+            <input type="text" id="first" name="first" required />
+
+            <label for="last">Last Name:</label>
+            <input type="text" id="last" name="last" required />
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password"
+                   pattern="^(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])\S{8,}$" 
+                   title="Password must contain at least one number, one alphabet, one symbol, and be at least 8 characters long" required />
+
+            <label for="repass">Re-type Password:</label>
+            <input type="password" id="repass" name="repass" required />
+              
+            <label for="kegiatan">Kegiatan:</label>
+            <select id="kegiatan" name="kegiatan" required>
+                <option value="Bukber">Bukabersama</option>
+                <option value="Supporteran">Supporteran</option>
+                <option value="RPLgoesMalang">RPLgoesMalang</option>
+                <option value="MakanBareng">MakanBareng</option>
+            </select>
+
+            <label>Gender:</label>
+            <input type="radio" name="gender" value="Male" required /> Male <br>
+            <input type="radio" name="gender" value="Female" required /> Female <br>
+            <input type="radio" name="gender" value="Other" required /> Other
+
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone" required />
+
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="3" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+        <div id="successModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Form submitted successfully!</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
