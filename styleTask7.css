@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+*{
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    padding: 0;
+}
+body{
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #adc1f2;
+}
+.main-container{
+    width: 80%;
+    max-width: 1200px;
+    padding: 10px 50px;
+    background-color: rgb(14, 113, 137);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+}
+h1{
+    font-weight: 700;
+    font-size: 50px;
+    margin: 0.5rem;
+    color: white;
+}
+h1 span{
+    color: aqua;
+    font-weight: 600;
+}
+h2{
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.navigation{
+    position: fixed;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: 4rem;
+    z-index: 1;
+}
+
+.navbar{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: full;
+    padding: 1rem 2rem;
+    border-radius:2rem;
+    color: white;
+    background-color: rgba(48, 47, 47, 0.4);
+    backdrop-filter: blur(1.5rem);
+}
+.nav-right{
+    display: flex;
+    gap: 6.5rem;
+    align-items: center;
+}
+.nav-right h2:hover{
+    color: #4162A6;
+    border-bottom: 2px solid aqua;
+    cursor: pointer;
+}
+button{
+    width: 90px;
+    border-radius: 60px;
+    padding: 5px;
+}
+.button-nav{
+    display: flex;
+    gap: 20px;
+}
+.login{
+    color: black;
+    border: 2px solid aqua;
+    transition: 0.1s ease-in-out;
+}
+.login:hover{
+    background-color: aqua;
+    color: white;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+.join-now{
+    color: white;
+    background-color: aqua;
+    border-style: none;
+    transition: 0.1s ease-in-out;
+}
+.join-now:hover{
+    background-color: #081226;
+    color: white;
+    cursor: pointer;
+    transform: scale(1.2);
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+}
+.content{
+    padding: 20px 20px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+.info-container{
+    width: 600px ;
+}
+h4{
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: aqua;
+}
+h3{
+    font-size: 30px;
+    font-weight: 500;
+    color: white;
+}
+.main-text{
+    font-size: 50px;
+}
+img{
+    width: 600px;
+}
+i{
+    font-size: 30px;
+    margin-right: 5px;
+    color: white;
+}
+i:hover{
+    color: #4162A6;
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: 0.1s ease-in-out;
+}
+@media (max-width: 1024px){
+    button{
+        display: none;
+    }
+    .content{
+        margin-top: 40px;
+    }
+    img{
+        max-width: 100%;
+        min-width: 300px;
+    }
+}
+@media(max-width: 825px){
+    .main-text{
+        font-size: 30px;
+    }
+}
+@media (max-width: 770px){
+    .content{
+        margin-top: 0;
+    }
+}
+@media(max-width: 700px){
+    .about, .contact{
+        display: none;
+    }
+}
+@media(max-width: 500px){
+    .main-text{
+        font-size: 20px;
+    }
+    img{
+        min-width: 50px;
+    }
+    h4{
+        font-size: 15px;
+    }
+    h3{
+        font-size: 20px;
+    }
+    i{
+        font-size: 20px;
+    }
+}
+@media(max-width: 450px){
+    .nav-right{
+        display: none;
+    }
+}
